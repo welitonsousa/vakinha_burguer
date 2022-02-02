@@ -1,3 +1,4 @@
+import 'package:dart_week/core/binding/aplication.dart';
 import 'package:dart_week/core/ui/app_theme.dart';
 import 'package:dart_week/routes/auth_route.dart';
 import 'package:dart_week/routes/splash_route.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Dart Week',
       theme: AppTheme.theme,
+      initialBinding: AplicationBinding(),
       getPages: [
         ...SplashRoute.routers,
         ...AuthRouter.routers,

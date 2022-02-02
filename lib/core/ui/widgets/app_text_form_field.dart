@@ -7,10 +7,12 @@ class AppTextFormField extends StatelessWidget {
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChange;
   final bool obcured;
+  final bool enabled;
 
   const AppTextFormField({
     Key? key,
     required this.label,
+    this.enabled = true,
     this.controller,
     this.validator,
     this.onChange,
@@ -24,7 +26,9 @@ class AppTextFormField extends StatelessWidget {
       validator: validator,
       controller: controller,
       onChanged: onChange,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       cursorColor: context.theme.primaryColor,
+      enabled: enabled,
       decoration: InputDecoration(
         isDense: true,
         labelText: label,

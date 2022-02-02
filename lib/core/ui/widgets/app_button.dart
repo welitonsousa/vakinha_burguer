@@ -6,6 +6,7 @@ class AppButton extends StatelessWidget {
 
   final double? wigth;
   final double heigth;
+  final bool loading;
   final Color? color;
   const AppButton({
     Key? key,
@@ -13,6 +14,7 @@ class AppButton extends StatelessWidget {
     this.wigth,
     this.heigth = 50,
     this.color,
+    this.loading = false,
     required this.label,
   }) : super(key: key);
 
@@ -22,10 +24,18 @@ class AppButton extends StatelessWidget {
       width: wigth,
       height: heigth,
       child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(
-          label,
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        onPressed: () {
+          if (onPressed != null && !loading) {
+            onPressed!();
+          }
+        },
+        child: Visibility(
+          visible: loading,
+          child: const CircularProgressIndicator(color: Colors.white),
+          replacement: Text(
+            label,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          ),
         ),
         style: ElevatedButton.styleFrom(
           shape: const StadiumBorder(),
