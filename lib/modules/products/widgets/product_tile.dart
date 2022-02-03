@@ -1,7 +1,9 @@
 import 'package:dart_week/core/formatters/formatters.dart';
 import 'package:dart_week/core/ui/app_theme.dart';
 import 'package:dart_week/models/product_model.dart';
+import 'package:dart_week/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProductTile extends StatelessWidget {
   final ProductModel product;
@@ -11,6 +13,7 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () => Get.toNamed(AppRoutes.productDetail, arguments: product),
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
         decoration: BoxDecoration(
