@@ -1,6 +1,6 @@
 import 'package:dart_week/core/rest_client/rest_client.dart';
-import 'package:dart_week/modules/models/user_model.dart';
-import 'package:dart_week/modules/repositories/auth/auth_repository.dart';
+import 'package:dart_week/models/user_model.dart';
+import 'package:dart_week/repositories/auth/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
   final RestClient _restClient;
@@ -22,7 +22,7 @@ class AuthRepositoryImp implements AuthRepository {
     if (response.hasError) {
       throw RestClientException(response.body['error'] ?? '');
     }
-    return login(email: email, password: password);
+    return await login(email: email, password: password);
   }
 
   @override

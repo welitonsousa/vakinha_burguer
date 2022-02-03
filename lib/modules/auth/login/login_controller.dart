@@ -1,7 +1,7 @@
 import 'package:dart_week/core/constants/app_storages.dart';
 import 'package:dart_week/core/mixins/snack_mixins.dart';
 import 'package:dart_week/core/rest_client/rest_client.dart';
-import 'package:dart_week/modules/repositories/auth/auth_repository.dart';
+import 'package:dart_week/repositories/auth/auth_repository.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -27,14 +27,12 @@ class LoginController extends GetxController with SnackMixin {
   }) async {
     try {
       _loading(true);
-
       final user = await _authRepository.login(
         email: email,
         password: password,
       );
       final storage = GetStorage();
       storage.write(AppStorages.USER_ID, user.id);
-      Get.back();
     } on RestClientException catch (e) {
       _message(
         MessageModel(

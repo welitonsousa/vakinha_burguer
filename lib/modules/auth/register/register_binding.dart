@@ -1,6 +1,6 @@
 import 'package:dart_week/modules/auth/register/register_controller.dart';
-import 'package:dart_week/modules/repositories/auth/auth_repository.dart';
-import 'package:dart_week/modules/repositories/auth/auth_repository_imp.dart';
+import 'package:dart_week/repositories/auth/auth_repository.dart';
+import 'package:dart_week/repositories/auth/auth_repository_imp.dart';
 import 'package:get/instance_manager.dart';
 
 class RegisterBinding implements Bindings {

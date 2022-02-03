@@ -1,4 +1,4 @@
-import 'package:dart_week/modules/models/user_model.dart';
+import 'package:dart_week/models/user_model.dart';
 
 abstract class AuthRepository {
   Future<UserModel> register(

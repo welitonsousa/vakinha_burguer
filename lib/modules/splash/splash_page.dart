@@ -1,17 +1,19 @@
 import 'package:dart_week/core/constants/app_images.dart';
 import 'package:dart_week/core/ui/widgets/app_button.dart';
-import 'package:dart_week/routes/app_routes.dart';
+import 'package:dart_week/modules/splash/splash_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends GetView<SplashController> {
   const SplashPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: body(context),
-      backgroundColor: const Color(0xFF140E0E),
+    return SafeArea(
+      child: Scaffold(
+        body: body(context),
+        backgroundColor: const Color(0xFF140E0E),
+      ),
     );
   }
 
@@ -27,7 +29,7 @@ class SplashPage extends StatelessWidget {
               AppButton(
                 wigth: context.widthTransformer(reducedBy: 40),
                 label: 'ACESSAR',
-                onPressed: () => Get.toNamed(AppRoutes.login),
+                onPressed: () => controller.checkLogged(),
               ),
             ],
           ),
