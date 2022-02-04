@@ -2,18 +2,38 @@ import 'package:dart_week/core/formatters/formatters.dart';
 import 'package:flutter/material.dart';
 import 'package:dart_week/core/ui/widgets/app_rounded_button.dart';
 
-class AppQuantityComponent extends StatelessWidget {
+class AppQuantityComponent extends StatefulWidget {
   final double price;
+  final int initialQuantity;
   final bool updateTotal;
   final Function(int) changeQuantity;
-  final quantity = ValueNotifier(1);
 
-  AppQuantityComponent({
+  const AppQuantityComponent({
     Key? key,
     required this.price,
     required this.changeQuantity,
+    this.initialQuantity = 1,
     this.updateTotal = false,
   }) : super(key: key);
+
+  @override
+  State<AppQuantityComponent> createState() => _AppQuantityComponentState();
+}
+
+class _AppQuantityComponentState extends State<AppQuantityComponent> {
+  final quantity = ValueNotifier(1);
+
+  @override
+  void initState() {
+    quantity.value = widget.initialQuantity;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    quantity.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +45,7 @@ class AppQuantityComponent extends StatelessWidget {
             if (quantity.value > 1) {
               quantity.value -= 1;
             }
-            changeQuantity(quantity.value);
+            widget.changeQuantity(quantity.value);
           },
         ),
         ValueListenableBuilder(
@@ -38,7 +58,7 @@ class AppQuantityComponent extends StatelessWidget {
           label: '+',
           onChange: () {
             quantity.value += 1;
-            changeQuantity(quantity.value);
+            widget.changeQuantity(quantity.value);
           },
         ),
         const Spacer(),
@@ -46,11 +66,11 @@ class AppQuantityComponent extends StatelessWidget {
           padding: const EdgeInsets.only(right: 10),
           child: ValueListenableBuilder(
             valueListenable: quantity,
-            builder: (context, value, widget) {
-              if (updateTotal) {
-                return Text(Formatters.money(price * quantity.value));
+            builder: (context, value, _) {
+              if (widget.updateTotal) {
+                return Text(Formatters.money(widget.price * quantity.value));
               }
-              return Text(Formatters.money(price));
+              return Text(Formatters.money(widget.price));
             },
           ),
         ),

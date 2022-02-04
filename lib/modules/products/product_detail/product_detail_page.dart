@@ -43,6 +43,7 @@ class ProductDetailPage extends GetView<ProductDetailController> {
               Text(controller.product.description),
               const SizedBox(height: 20),
               AppQuantityComponent(
+                initialQuantity: controller.quantity,
                 price: controller.product.price,
                 changeQuantity: controller.changeQuantity,
               ),
@@ -54,8 +55,8 @@ class ProductDetailPage extends GetView<ProductDetailController> {
               const SizedBox(height: 20),
               AppButton(
                 wigth: context.width,
-                label: 'ADICIONAR',
-                onPressed: () {},
+                label: controller.alReadyAdded ? 'ATUALIZAR' : 'ADICIONAR',
+                onPressed: controller.addProductInShoppintgCart,
               ),
             ],
           ),
