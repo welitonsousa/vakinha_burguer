@@ -1,12 +1,12 @@
-import 'package:dart_week/core/services/cart_products_service.dart';
+import 'package:dart_week/core/services/shopping_products_service.dart';
 import 'package:dart_week/models/product_model.dart';
 import 'package:get/get.dart';
 
 class ProductDetailController extends GetxController {
   final _product = Rx<ProductModel>(Get.arguments);
-  final CartProductsService _cartService;
+  final ShopppingProductsService _cartService;
 
-  ProductDetailController({required CartProductsService cartService})
+  ProductDetailController({required ShopppingProductsService cartService})
       : _cartService = cartService;
 
   ProductModel get product => _product.value;

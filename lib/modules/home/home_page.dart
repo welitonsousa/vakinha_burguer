@@ -25,7 +25,7 @@ class _PageHomeState extends AppState<PageHome, HomeController> {
 
   Widget _body() {
     return Navigator(
-      key: Get.nestedKey(controller.navigatorKey),
+      key: Get.nestedKey(HomeController.navigatorKey),
       initialRoute: controller.initialRoute,
       onGenerateRoute: controller.ongeneratedRoute,
     );
@@ -46,6 +46,10 @@ class _PageHomeState extends AppState<PageHome, HomeController> {
                 quantity: controller.shoppingCartQuantity,
                 icon: Icons.shopping_cart_outlined,
               )),
+        ),
+        const BottomNavigationBarItem(
+          label: 'Sair',
+          icon: Icon(Icons.exit_to_app),
         )
       ],
     );

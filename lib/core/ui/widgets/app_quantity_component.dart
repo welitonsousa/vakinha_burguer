@@ -6,6 +6,7 @@ class AppQuantityComponent extends StatefulWidget {
   final double price;
   final int initialQuantity;
   final bool updateTotal;
+  final int minValue;
   final Function(int) changeQuantity;
 
   const AppQuantityComponent({
@@ -14,6 +15,7 @@ class AppQuantityComponent extends StatefulWidget {
     required this.changeQuantity,
     this.initialQuantity = 1,
     this.updateTotal = false,
+    this.minValue = 1,
   }) : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _AppQuantityComponentState extends State<AppQuantityComponent> {
         AppRoundedButton(
           label: '-',
           onChange: () {
-            if (quantity.value > 1) {
+            if (quantity.value > widget.minValue) {
               quantity.value -= 1;
             }
             widget.changeQuantity(quantity.value);
@@ -61,17 +63,24 @@ class _AppQuantityComponentState extends State<AppQuantityComponent> {
             widget.changeQuantity(quantity.value);
           },
         ),
-        const Spacer(),
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: ValueListenableBuilder(
-            valueListenable: quantity,
-            builder: (context, value, _) {
-              if (widget.updateTotal) {
-                return Text(Formatters.money(widget.price * quantity.value));
-              }
-              return Text(Formatters.money(widget.price));
-            },
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: ValueListenableBuilder(
+              valueListenable: quantity,
+              builder: (context, value, _) {
+                if (widget.updateTotal) {
+                  return Text(
+                    Formatters.money(widget.price * quantity.value),
+                    maxLines: 1,
+                  );
+                }
+                return Text(
+                  Formatters.money(widget.price),
+                  maxLines: 1,
+                );
+              },
+            ),
           ),
         ),
       ],

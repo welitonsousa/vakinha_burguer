@@ -2,10 +2,20 @@ import 'package:dart_week/models/product_model.dart';
 import 'package:dart_week/models/shoppint_cart.dart';
 import 'package:get/get.dart';
 
-class CartProductsService extends GetxService {
+class ShopppingProductsService extends GetxService {
   final _shoppingCart = <int, ShoppintCartModel>{}.obs;
 
   List<ShoppintCartModel> get products => _shoppingCart.values.toList();
+  void cleanCart() {
+    _shoppingCart.clear();
+  }
+
+  double get totalShoppingCart {
+    return _shoppingCart.values.fold(0, (total, cart) {
+      total += cart.product.price * cart.quantity;
+      return total;
+    });
+  }
 
   ShoppintCartModel? getById(int id) => _shoppingCart[id];
 

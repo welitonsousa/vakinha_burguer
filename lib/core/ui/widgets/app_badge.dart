@@ -22,7 +22,10 @@ class AppBadge extends StatelessWidget {
               backgroundColor: Colors.red,
               child: Text(
                 quantity.toString(),
-                style: AppTheme.textBold.copyWith(fontSize: 10),
+                style: AppTheme.textBold.copyWith(
+                  fontSize: 10,
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
