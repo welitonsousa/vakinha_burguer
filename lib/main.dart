@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Dart Week',
       theme: AppTheme.theme,
+      debugShowCheckedModeBanner: false,
       initialBinding: AplicationBinding(),
       getPages: [
         ...ProductRoute.routers,

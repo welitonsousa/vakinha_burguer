@@ -44,5 +44,6 @@ class HomeController extends GetxController {
         page: () => CartProductsPage(),
       );
     }
+    return null;
   }
 }
